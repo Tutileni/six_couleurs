@@ -7,16 +7,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Serveur {
-	public static Joueur [] serveur(Cellule  [][]grille,Joueur a,Joueur b,Joueur c,Joueur d,int type,int regle)  throws IOException, ClassNotFoundException {	
+	public static Joueur [] serveur(Cellule  [][]grille,Joueur a,Joueur b,Joueur c,Joueur d,int regle)  throws IOException, ClassNotFoundException {	
 		
 		Joueur [] stockJoueur= new Joueur [4];
-		ServerSocket ss = new ServerSocket(9530);
+		ServerSocket ss = new ServerSocket(9531);
 		System.out.println("En attente de connexion");
-		int pour=50;
+		int pourcent=50;
 		
 		Socket s = ss.accept();
-
-		
 		
 		System.out.println("Le serveur a accepté la connexion de "+s);
 		
@@ -26,7 +24,7 @@ public class Serveur {
 		
 		out.writeInt(regle);
 		out.flush();
-		while(a.getPourc()<pour&&b.getPourc()<pour)
+		while(a.getPourcent()<pourcent&&b.getPourcent()<pourcent)
 		{
 			out.flush();
 			grille=Grille.changCoulG(grille, a, b, c, d);
@@ -37,13 +35,8 @@ public class Serveur {
 				Grille.brouillard(grille, a);
 			}
 			
-			a=Main.changCoulJ(a, b, c, d, a);
+			a=Main.changCoulJ(a, b, c, d, a,null,grille,"N");
 			grille=Grille.changCoulG(grille, a, b, c, d);
-			
-			
-			
-			
-			
 			
 			out.writeObject(grille);
 			out.flush();
@@ -59,10 +52,7 @@ public class Serveur {
 			
 			out.writeObject(d);
 			out.flush();
-			
-			/*System.out.println("Information émises");
-			
-			System.out.println("Réception de b");*/
+
 			System.out.println("En attente du joueur "+b.getid());
 			b=(Joueur) in.readObject();
 			Main.pourcentage(a,grille);

@@ -26,21 +26,17 @@ public class Cellule implements Serializable{
 		this.y=y;
 	}
 	
-	public String getcolor()
-	{
-		return this.couleur;
-	}
-	public String etcolor()
+	public String getColor()
 	{
 		return this.couleur;
 	}
 	
-	public int getcolonne()
+	public int getColonne()
 	{
 		return this.x;
 	}
 	
-	public int getligne()
+	public int getLigne()
 	{
 		return this.y;
 	}

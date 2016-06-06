@@ -20,23 +20,13 @@ public class Client {
 		Joueur c = new Joueur(3, null);
 		
 		Joueur d = new Joueur(4, null);
-		int taille;
+		
 		int regle=0;
 		int pour=50;
 		Socket socket=null;
 		
-		/*long debut= System.currentTimeMillis();
-		long intervalle=0;
-		long actuelTime=System.currentTimeMillis();
-		
-			while(!socket.isConnected()&&intervalle<60000)
-			{
-				socket = new Socket("localhost",9520);	
-				actuelTime=System.currentTimeMillis();
-				intervalle=actuelTime-debut;
-			}*/
 		try{
-			socket = new Socket("192.168.1.14",9530);
+			socket = new Socket("192.168.1.14",9531);
 			System.out.println("Demande de connexion");
 			
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -45,14 +35,12 @@ public class Client {
 		    ObjectInputStream in = new ObjectInputStream (socket.getInputStream());
 		    regle = (int) in.readInt();
 		    
-		    while(a.getPourc()<pour&&b.getPourc()<pour)
+		    while(a.getPourcent()<pour&&b.getPourcent()<pour)
 		    {
-		    	if(a.getPourc()<pour&&b.getPourc()<pour)
+		    	if(a.getPourcent()<pour&&b.getPourcent()<pour)
 			    { 
 			    	grille=(Cellule [][]) in.readObject();
-					
-			    	 
-				   
+  
 					a=(Joueur) in.readObject();
 					
 				 
@@ -63,11 +51,10 @@ public class Client {
 					
 				    
 				   d=(Joueur) in.readObject();
+				   
 			    }else{}
-				
-			 
 			    
-			    if(a.getPourc()<pour&&b.getPourc()<pour)
+			    if(a.getPourcent()<pour&&b.getPourcent()<pour)
 			    {
 			    	if(regle==0)
 			    	{
@@ -75,7 +62,7 @@ public class Client {
 			    	}else{
 			    		Grille.brouillard(grille, b);
 			    	}
-			    	b=Main.changCoulJ(a, b, c, d, b);
+			    	b=Main.changCoulJ(a, b, c, d, b, null, grille,"N");
 			    	 Main.pourcentage(a,grille);
 			    	System.out.println("En attente du joueur "+a.getid());
 			    }else{}

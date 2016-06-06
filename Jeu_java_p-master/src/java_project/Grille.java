@@ -55,7 +55,7 @@ public class Grille {
 					case 0: 
 						for(int co=0;co<couleur.length;co++)
 						{	
-							if(!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getcolor()))
+							if(!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getColor()))
 							{
 								couleur1[i]=couleur[co];
 								i++;
@@ -72,8 +72,8 @@ public class Grille {
 					case 1:
 						for(int co=0;co<couleur.length;co++)
 						{	
-							if(!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getcolor())
-							&&!couleur[co].equalsIgnoreCase(nouvelleG[taille-1][0].getcolor()))
+							if(!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getColor())
+							&&!couleur[co].equalsIgnoreCase(nouvelleG[taille-1][0].getColor()))
 							{
 								couleur1[i]=couleur[co];
 								i++;
@@ -89,9 +89,9 @@ public class Grille {
 							
 					case 3: for(int co=0;co<couleur.length;co++)
 					{	
-						if(!couleur[co].equalsIgnoreCase(nouvelleG[0][0].getcolor())
-							&&!couleur[co].equalsIgnoreCase(nouvelleG[taille-1][0].getcolor())
-							&&!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getcolor()))
+						if(!couleur[co].equalsIgnoreCase(nouvelleG[0][0].getColor())
+							&&!couleur[co].equalsIgnoreCase(nouvelleG[taille-1][0].getColor())
+							&&!couleur[co].equalsIgnoreCase(nouvelleG[0][taille-1].getColor()))
 						{
 							couleur1[i]=couleur[co];
 							i++;
@@ -112,7 +112,7 @@ public class Grille {
 	public static void initCouleurGrille(int x, int y, Cellule [][] grille, int x1, int y1)
 	{
 		int rand;
-		while(grille[x1][y1].getcolor().equalsIgnoreCase(grille[x][y].getcolor()))
+		while(grille[x1][y1].getColor().equalsIgnoreCase(grille[x][y].getColor()))
 		{
 			rand=(int)(Math.random()*6);
 			grille[x1][y1].changeCouleur(couleur[rand]);
@@ -133,27 +133,27 @@ public class Grille {
 						
 						if(grille[x][y].getPlayerId()==a.getid())
 						{
-							grille[x][y].changeCouleur(a.getcolor());							
+							grille[x][y].changeCouleur(a.getColor());							
 							proximite(x, y, a, grille);
 						}else{									
 							if(grille[x][y].getPlayerId()==b.getid())
 							{
 								
-								grille[x][y].changeCouleur(b.getcolor());
+								grille[x][y].changeCouleur(b.getColor());
 								proximite(x, y, b, grille);		
 								
 							}else{
 								if(grille[x][y].getPlayerId()==c.getid())
 								{
 									
-									grille[x][y].changeCouleur(c.getcolor());
+									grille[x][y].changeCouleur(c.getColor());
 									proximite(x, y, c, grille);		
 									
 								}else{
 									if(grille[x][y].getPlayerId()==d.getid())
 									{
 										
-										grille[x][y].changeCouleur(d.getcolor());
+										grille[x][y].changeCouleur(d.getColor());
 										proximite(x, y, d, grille);		
 										
 									}else{
@@ -177,7 +177,7 @@ public class Grille {
 		largeur=i-1;
 		longueur=j;
 		
-		if(largeur >= 0 && largeur < grille.length && longueur >= 0 && longueur < grille.length && grille[largeur][longueur].getcolor().equalsIgnoreCase(x.getcolor())) 
+		if(largeur >= 0 && largeur < grille.length && longueur >= 0 && longueur < grille.length && grille[largeur][longueur].getColor().equalsIgnoreCase(x.getColor())) 
 		{
 			
 			grille[largeur][longueur].changeId(x.getid());
@@ -188,7 +188,7 @@ public class Grille {
 		largeur=i+1;
 		
 		if(largeur >= 0 && largeur < grille.length && longueur >= 0 && longueur < grille.length && grille[largeur][longueur].getPlayerId()==0
-				&& grille[largeur][longueur].getcolor().equalsIgnoreCase(x.getcolor())) 
+				&& grille[largeur][longueur].getColor().equalsIgnoreCase(x.getColor())) 
 		{
 			grille[largeur][longueur].changeId(x.getid());
 			proximite(largeur,longueur,x,grille);
@@ -200,7 +200,7 @@ public class Grille {
 		
 		if(largeur >= 0 && largeur < grille.length && longueur >= 0 && longueur < grille.length 
 				&& grille[largeur][longueur].getPlayerId()==0 
-				&& grille[largeur][longueur].getcolor().equalsIgnoreCase(x.getcolor())) 
+				&& grille[largeur][longueur].getColor().equalsIgnoreCase(x.getColor())) 
 		{
 			grille[largeur][longueur].changeId(x.getid());
 			proximite(largeur,longueur,x,grille);
@@ -211,7 +211,7 @@ public class Grille {
 		
 		if(largeur >= 0 && largeur < grille.length && longueur >= 0 
 				&& longueur < grille.length && grille[largeur][longueur].getPlayerId()==0
-				&& grille[largeur][longueur].getcolor().equalsIgnoreCase(x.getcolor())) 
+				&& grille[largeur][longueur].getColor().equalsIgnoreCase(x.getColor())) 
 		{
 			grille[largeur][longueur].changeId(x.getid());
 			proximite(largeur,longueur,x,grille);
@@ -228,58 +228,55 @@ public class Grille {
 	
 		colonne=i;
 		ligne=j-1;
-		
-		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length
-				&& grille[colonne][ligne].getPlayerId()==0
-				&& grille[colonne][ligne].getcolor().equalsIgnoreCase(couleur))
+		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length)
 		{
-			grille[colonne][ligne].changeId(10);//POURQUOI ??
-			compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
-			compteur1++;
-			
-		}else{
-			
-		}
+			if( grille[colonne][ligne].getPlayerId()==0
+				&& grille[colonne][ligne].getColor().equalsIgnoreCase(couleur))
+			{
+				grille[colonne][ligne].changeId(10);
+				compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
+				compteur1++;
+				
+			}else{}
+		}else{}
+		
 		colonne=i-1;
 		ligne=j;
-		
-		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length
-				&& grille[colonne][ligne].getPlayerId()==0
-				&& grille[colonne][ligne].getcolor().equalsIgnoreCase(couleur))
+		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length)
 		{
-			grille[colonne][ligne].changeId(10);
-			compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
-			compteur1++;
-		}else{
-			
-		}
+			if(grille[colonne][ligne].getPlayerId()==0
+					&& grille[colonne][ligne].getColor().equalsIgnoreCase(couleur))
+			{
+				grille[colonne][ligne].changeId(10);
+				compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
+				compteur1++;
+			}else{}
+		}else{}
 		colonne=i;
 		ligne=j+1;
-		
-		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length
-				&& grille[colonne][ligne].getPlayerId()==0
-				&& grille[colonne][ligne].getcolor().equalsIgnoreCase(couleur))
+		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length)
 		{
-			grille[colonne][ligne].changeId(10);
-			
-			compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
-			compteur1++;
-		}else{
-			
+			if(grille[colonne][ligne].getPlayerId()==0
+				&& grille[colonne][ligne].getColor().equalsIgnoreCase(couleur))
+			{
+				grille[colonne][ligne].changeId(10);
+				
+				compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
+				compteur1++;
+			}else{}
 		}
 		colonne=i+1;
 		ligne=j;
-		
-		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length
-				&& grille[colonne][ligne].getPlayerId()==0
-				&& grille[colonne][ligne].getcolor().equalsIgnoreCase(couleur))
+		if(colonne>=0 && colonne<grille.length && ligne>=0 && ligne<grille.length)
 		{
-			grille[colonne][ligne].changeId(10);
-			compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
-			compteur1++;
-		}else{
-			
-		}
+			if(grille[colonne][ligne].getPlayerId()==0
+				&& grille[colonne][ligne].getColor().equalsIgnoreCase(couleur))
+			{
+				grille[colonne][ligne].changeId(10);
+				compteur1=proximiteCompteur(colonne, ligne, x, grille, couleur, compteur1);
+				compteur1++;
+			}else{}
+		}else{}
 		
 		for(int x1=0;x1<grille.length;x1++)
 		{
@@ -305,7 +302,7 @@ public class Grille {
 				{
 					for(int i=0;i<grille.length;i++)
 					{
-						System.out.print(" | "+grille[i][j].getcolor()+" "+grille[i][j].getPlayerId()+" | ");
+						System.out.print(" | "+grille[i][j].getColor()+" "+grille[i][j].getPlayerId()+" | ");
 					}
 					System.out.println();
 				}
@@ -316,50 +313,11 @@ public class Grille {
 				{
 					for(int i=0;i<grille.length;i++)
 					{
-						System.out.print(" | "+grille[i][j].getcolor()+" "+grille[i][j].getPlayerId()+" | ");
+						System.out.print(" | "+grille[i][j].getColor()+" "+grille[i][j].getPlayerId()+" | ");
 					}
 					System.out.println();
-				}/*
-				for(int i = 1; i <= grille.length/2; i++) 
-			    { 
-					for (int j = 1; j <= grille.length*2; j++)
-					{
-				                         
-				            if(j>(grille.length-i)&&j<(grille.length+i))
-				            {
-				            	System.out.print(" | "+grille[i][j].getcolor()+" "+grille[i][j].getPlayerId()+" | ");
-								
-				            }else{
-				                System.out.print(" ");
+				}
 				
-				            }
-				            
-				            
-					}
-				
-					System.out.println("");
-				    }    
-				    for(int i = grille.length/2; i >= 1; i--) 
-				    { 
-					for (int j = 1; j <= grille.length*2; j++)
-					{
-				                         
-				            if(j>(grille.length-i+1)&&j<(grille.length+i-1))
-				            {
-				            	System.out.print(" | "+grille[i][j].getcolor()+" "+grille[i][j].getPlayerId()+" | ");
-								
-				            }else{
-				                System.out.print(" ");
-				
-				            }
-				            
-				            
-				     }
-				
-				System.out.println("");
-			    }
-				
-				*/
 				
 			}else{
 				
@@ -387,7 +345,7 @@ public class Grille {
 					{
 						if(grille[i][j].getPlayerId()==x.getid())
 						{
-							System.out.print(" | "+grille[i][j].getcolor()+" "+grille[i][j].getPlayerId()+" | ");
+							System.out.print(" | "+grille[i][j].getColor()+" "+grille[i][j].getPlayerId()+" | ");
 						}else{
 							System.out.print(" |     | "	);
 						}

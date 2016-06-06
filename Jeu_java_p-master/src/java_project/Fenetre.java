@@ -110,7 +110,7 @@ public class Fenetre
         buttonPanel_2.setBorder(new TitledBorder("Score"));
         
         for(int i=0;i<J.length;i++){
-        JLabelScore[i] = new JLabel(J[i].getname()+", Score : "+J[i].getPourc()+"%");
+        JLabelScore[i] = new JLabel(J[i].getname()+", Score : "+J[i].getPourcent()+"%");
         buttonPanel_2.add(JLabelScore[i]);}
         Main.button(this);
         
@@ -481,7 +481,7 @@ public class Fenetre
 				}}}
 		    	else{
 				    	
-				    	 JLabel  Choix8  = new  JLabel("Êtes vous l'host?O/N");
+				    	 	JLabel  Choix8  = new  JLabel("Êtes vous l'host?O/N");
 				    	 
 					    	JTextField Champ8 = new  JTextField();
 					    	
@@ -519,7 +519,7 @@ public class Fenetre
     }
    
     public static void Label(Joueur[] J){
-    	for(int i=0;i<J.length;i++)Fenetre.JLabelScore[i].setText(J[i].getname()+", Score : "+J[i].getPourc()+"%");
+    	for(int i=0;i<J.length;i++)Fenetre.JLabelScore[i].setText(J[i].getname()+", Score : "+J[i].getPourcent()+"%");
     }
    
     public static void Message(String joueur, String couleur)
@@ -552,7 +552,7 @@ public class Fenetre
 			{
 				for(int j=0;j<taille;j++)
 				{
-					String  var= grille[j][i].getcolor();
+					String  var= grille[j][i].getColor();
 					
 					 
 		                switch(var)
@@ -660,12 +660,12 @@ public static void ecrire(Cellule [][] grille,Joueur a, Joueur b, Joueur c, Joue
 		File file= new File("../Jeu_java_p/src/java_project/fic1.txt");
 		File file2= new File("../Jeu_java_p/src/java_project/fic2.txt");
 		File file3= new File("../Jeu_java_p/src/java_project/fic3.txt");
-		if(!file.exists() && !file2.exists() && !file.exists()){
+		if(!file.exists() && !file2.exists() && !file3.exists()){
 			
 			try{
 				file.createNewFile();
 				file2.createNewFile();
-				file2.createNewFile();
+				file3.createNewFile();
 			}
 			catch(IOException e){
 				e.printStackTrace();
@@ -676,7 +676,7 @@ public static void ecrire(Cellule [][] grille,Joueur a, Joueur b, Joueur c, Joue
 			{	//print.print("|");
 				for(int i=0;i<grille.length;i++)
 				{
-					print.println(grille[i][j].getcolor());
+					print.println(grille[i][j].getColor());
 					
 				}//print.println("|");
 				
@@ -717,12 +717,12 @@ public static Cellule [][] lire(Cellule [][] grille){
 	File file3= new File("../Jeu_java_p/src/java_project/fic3.txt");
 	//Cellule [][] grille= Grille.initGrille(19);
 	
-	if(!file.exists() && !file2.exists() && !file.exists()){
+	if(!file.exists() && !file2.exists() && !file3.exists()){
 		
 		try{
 			file.createNewFile();
 			file2.createNewFile();
-			file2.createNewFile();
+			file3.createNewFile();
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -769,21 +769,63 @@ public static Cellule [][] lire(Cellule [][] grille){
 	}
 	
 	try(FileInputStream fos3 = new FileInputStream(file3)){
-		
+		int i=0;
 		Scanner sc= new Scanner(fos3);
 		while(sc.hasNextLine()){
 			
 					String[] split=String.valueOf(sc.nextLine()).split(" ");
-				
+					
 					
 						switch(split[0])
 				        {	
-				                case "1" : Main.a=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));
+				                case "1" : 
+				                	if(i==0){
+				                		 Main.a.changPourcent(Double.parseDouble(split[3]));
+										 Main.a.changeCouleur(split[1]);
+				                		//Main.a=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));i++;
+				                		}
+				                	else{
+				                		 Main.x.changPourcent(Double.parseDouble(split[3]));
+										 Main.x.changeCouleur(split[1]);	
+				                		//Main.x=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));
+				                		}
 				                break;
-				                case "2" : Main.b=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3])); break;
-				                case "3" : Main.c=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3])); break;
-				                
-				                case "4" : Main.d=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3])); break;
+				                case "2" : 
+				                	if(i==0){
+				                		 Main.b.changPourcent(Double.parseDouble(split[3]));
+										 Main.b.changeCouleur(split[1]);
+				                		 //Main.b=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));i++;
+										 }
+			                		else{
+			                			 Main.x.changPourcent(Double.parseDouble(split[3]));
+										 Main.x.changeCouleur(split[1]);
+			                			//Main.x=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));
+			                			} 
+				                break;
+				                case "3" : 
+				                	if(i==0){
+				                		 Main.c.changPourcent(Double.parseDouble(split[3]));
+										 Main.c.changeCouleur(split[1]);
+				                		//Main.c=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));i++;
+				                		}
+			                		else{
+			                			 Main.x.changPourcent(Double.parseDouble(split[3]));
+										 Main.x.changeCouleur(split[1]);	
+			                			//Main.x=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));
+			                			} 
+					                break;
+				                case "4" : 
+				                	if(i==0){
+				                		 Main.d.changPourcent(Double.parseDouble(split[3]));
+										 Main.d.changeCouleur(split[1]);
+				                		//Main.d=new Joueur(Integer.parseInt(split[0]),split[1],split[2],Double.parseDouble(split[3]));i++;
+				                		}
+			                		else{
+			                			 Main.x.changPourcent(Double.parseDouble(split[3]));
+										 Main.x.changeCouleur(split[1]);
+			                				//new Joueur(Integer.parseInt(split[0]),split[1],split[2],;
+			                		} 
+					                break;
 				        }
 					
 				
